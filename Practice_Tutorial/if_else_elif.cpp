@@ -8,9 +8,15 @@ int main(int argc, char const *argv[])
     cin>>saving;
 
     if (saving > 5000){
-        cout<<"Neha"<<endl;
-    } else {
+        if(saving>10000){
+            cout<<"Road Trip"<<endl;
+        } else {
+            cout<<"Shopping trip"<<endl;
+        }
+    } else if(saving>2000){
         cout<<"Rashmi"<<endl;
+    } else {
+        cout<<"Friend"<<endl;
     }
     return 0;
 }
