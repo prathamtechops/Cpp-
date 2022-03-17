@@ -5,20 +5,24 @@ int main(int argc, char const *argv[])
 {
     int n;
     cin>>n;
-    int a = 1;
-    for (int i =1 ; i <= n; i++){
-        int a = i;
-        for (int j = 1 ; j <= n - i; j++){
+    int i;
+    int j;
+    for (i =1 ; i <= n; i++){
+        for(j = 1; j <= n - i; j++){
             cout<<" ";
         }
-        for(int c = 1 ; c <= n; c++){
-            cout << a;
-            a--;
+        int a = i;
+        for(; j<=n; j++){
+            cout<<a--;
+            
         }
-        for (int k = 2; k <= n; k++){
-            cout<<k;
+        a = 2;
+        for(; j <= n+i -1; j++){
+            cout<<a++;
+            
         }
-        cout<< endl;
+        cout<<endl;
     }
+        
     return 0;
 }
