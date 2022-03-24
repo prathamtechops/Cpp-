@@ -13,7 +13,7 @@ int main(int argc, char const *argv[])
             else cout<<" ";
         }
         for (int spaces =1; spaces <=  n - i; spaces++) {
-            cout<<"*";
+            cout<<"*"; 
         }
         cout<< endl;
     }
