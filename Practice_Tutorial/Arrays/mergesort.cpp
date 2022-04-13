@@ -5,9 +5,10 @@ void merge(int a[], int l, int mid, int r);
 int main(int argc, char const *argv[])
 {
     int a[] = {12, 34, 10, 6, 40};
+    //lenght of array
     int n = sizeof(a)/sizeof(a[0]);
-    cout << n<<endl;
     mergesort(a, 0, n);
+    //printing sorted array
     for(int i = 0; i < n; i++){
         cout << a[i] <<" ";
     }
