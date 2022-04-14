@@ -4,10 +4,13 @@ void mergesort(int a[], int l, int r);
 void merge(int a[], int l, int mid, int r);
 int main(int argc, char const *argv[])
 {
-    int a[] = {12, 34, 10, 6, 40};
-    //lenght of array
-    int n = sizeof(a)/sizeof(a[0]);
-    mergesort(a, 0, n);
+    int n;
+    cin >> n;
+    int a[n];
+    for (int i = 0; i < n; i++){
+        cin >> a[i];
+    }
+    mergesort(a, 0, n-1);
     //printing sorted array
     for(int i = 0; i < n; i++){
         cout << a[i] <<" ";
