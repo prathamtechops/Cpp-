@@ -1,29 +1,29 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-
-class Solution
+int peakIndexInMountainArray(int arr[], int s, int e, int n)
 {
-public:
-    int peakIndexInMountainArray(vector<int> &arr)
+    if (s > e)
     {
-        int s = 0;
-        int e = arr.size() - 1;
-        int mid = s + (e - s) / 2;
-        while (s < e)
-        {
-            if (arr[mid] < arr[mid + 1])
-                s = mid + 1;
-            else
-                e = mid;
-            mid = s + (e - s) / 2;
-        }
         return s;
     }
-};
+
+    int mid = s + (e - s) / 2;
+    if (arr[mid] < arr[mid + 1])
+    {
+        return peakIndexInMountainArray(arr, mid + 1, e, n);
+    }
+    else
+    {
+        e = mid;
+    }
+    return e;
+}
 
 int main(int argc, char const *argv[])
 {
-
+    int a[] = {1, 2, 0, 1};
+    int n = sizeof(a) / sizeof(a[0]);
+    cout << peakIndexInMountainArray(a, 0, n - 1, n);
     return 0;
 }
