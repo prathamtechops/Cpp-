@@ -4,7 +4,6 @@ using namespace std;
 
 void powerset(string s, int i, string c)
 {
-    int count = 0;
     if (i == s.length())
     {
         cout << c << endl;
@@ -17,7 +16,7 @@ void powerset(string s, int i, string c)
 int main(int argc, char const *argv[])
 {
 
-    string s = "nidhi";
+    string s = "abc";
     string c = "";
     powerset(s, 0, c);
     return 0;

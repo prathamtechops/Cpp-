@@ -1,47 +1,100 @@
 #include <iostream>
 using namespace std;
 
-struct node
+class node
 {
+public:
     int data;
     node *next;
 };
-node *head = NULL;
 
-void insertBeg(int n)
+int lenght(node *list)
 {
-    node *ptr = new node();
-    ptr->data = n;
-    ptr->next = head;
-    head = ptr;
+
+    node *current = list;
+    int count = 0;
+    if (list == NULL)
+    {
+        cout << "list is NULL" << endl;
+        return -1;
+    }
+
+    while (current != NULL)
+    {
+        count++;
+        current = current->next;
+    }
+    return count;
+}
+void at_head(node **list, int data)
+{
+    node *head = new node();
+    head->data = data;
+    head->next = *list;
+    *list = head;
 }
 
-void insertEnd(int n)
+void at_tail(node *list, int data)
 {
-    node *ptr = new node();
-    ptr->data = n;
-    ptr->next = NULL;
-    if (head == NULL)
+    node *temp = new node();
+    temp->data = data;
+    temp->next = NULL;
+    while (list->next != NULL)
     {
-        head = ptr;
+        list = list->next;
     }
-    else
+    list->next = temp;
+}
+
+void at_pos(node *list, int pos, int data)
+{
+    if (pos == lenght(list))
+        at_tail(list, data);
+    if (pos == 1)
+        at_head(&list, data);
+    node *ptr = list;
+    node *ptr2 = new node();
+    ptr2->data = data;
+    ptr2->next = NULL;
+    pos--;
+    while (pos != 1)
     {
-        node *temp = head;
-        while (temp->next != NULL)
-        {
-            temp = temp->next;
-        }
-        temp->next = ptr;
+        ptr = ptr2->next;
+        pos--;
+    }
+    ptr2->next = ptr->next;
+    ptr->next = ptr2;
+}
+
+void print(node *list)
+{
+    if (list == NULL)
+    {
+        cout << "list is NULL" << endl;
+        return;
+    }
+
+    while (list != NULL)
+    {
+        cout << list->data << " ";
+        list = list->next;
     }
 }
+
 int main(int argc, char const *argv[])
 {
+    node *list = new node();
+    list->data = 100;
+    list->next = NULL;
+    at_head(&list, 200);
+    at_tail(list, 300);
+    at_pos(list, 2, 500);
+    // at_pos(list, 1, 89);
+    // at_pos(list, 5, 2);
 
-    node *ptr = new node();
-    ptr->data = 10;
-    ptr->next = NULL;
-    head = ptr;
+    cout << lenght(list) << endl;
+
+    print(list);
 
     return 0;
 }
