@@ -48,10 +48,6 @@ void at_tail(node *list, int data)
 
 void at_pos(node *list, int pos, int data)
 {
-    if (pos == lenght(list))
-        at_tail(list, data);
-    if (pos == 1)
-        at_head(&list, data);
     node *ptr = list;
     node *ptr2 = new node();
     ptr2->data = data;
@@ -89,8 +85,6 @@ int main(int argc, char const *argv[])
     at_head(&list, 200);
     at_tail(list, 300);
     at_pos(list, 2, 500);
-    // at_pos(list, 1, 89);
-    // at_pos(list, 5, 2);
 
     cout << lenght(list) << endl;
 

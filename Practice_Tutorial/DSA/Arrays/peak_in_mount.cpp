@@ -22,7 +22,7 @@ int peakIndexInMountainArray(int arr[], int s, int e, int n)
 
 int main(int argc, char const *argv[])
 {
-    int a[] = {1, 2, 0, 1};
+    int a[] = {10, 20, 15, 2, 23, 90, 67};
     int n = sizeof(a) / sizeof(a[0]);
     cout << peakIndexInMountainArray(a, 0, n - 1, n);
     return 0;
