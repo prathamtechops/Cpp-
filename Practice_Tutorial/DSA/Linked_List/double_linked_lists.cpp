@@ -1,23 +1,27 @@
 #include <iostream>
 using namespace std;
-// Full Linked List Program
+
 class Node
 {
 public:
     int data;
+    Node *prev;
     Node *next;
 
     Node(int data)
     {
         this->data = data;
+        this->prev = NULL;
         this->next = NULL;
     }
+
     ~Node()
     {
         int value = this->data;
-        if (this->next != NULL)
+        if (next != NULL)
         {
-            this->next = NULL;
+            delete next;
+            next = NULL;
         }
     }
 };
@@ -34,6 +38,7 @@ void insertAtHead(Node *&head, Node *&tail, int data)
     {
         Node *temp = new Node(data);
         temp->next = head;
+        head->prev = temp;
         head = temp;
     }
 }
@@ -50,11 +55,12 @@ void insertAtTail(Node *&head, Node *&tail, int data)
     {
         Node *temp = new Node(data);
         tail->next = temp;
+        temp->prev = tail;
         tail = temp;
     }
 }
 
-void insertAtPosition(Node *&head, Node *&tail, int pos, int data)
+void insert(Node *&head, Node *&tail, int pos, int data)
 {
     if (pos == 1)
     {
@@ -63,31 +69,32 @@ void insertAtPosition(Node *&head, Node *&tail, int pos, int data)
     }
 
     Node *temp = head;
-    int cnt = 1;
-    while (cnt < pos - 1)
+    int count = 1;
+    while (count < pos - 1)
     {
         temp = temp->next;
-        cnt++;
+        count++;
     }
     if (temp->next == NULL)
     {
         insertAtTail(head, tail, data);
         return;
     }
-
     Node *cur = new Node(data);
     cur->next = temp->next;
+    temp->next->prev = cur;
     temp->next = cur;
+    cur->prev = temp;
 }
-
 void removeNode(Node *&head, Node *&tail, int pos)
 {
     if (pos == 1)
     {
-        Node *cur = head;
-        head = head->next;
-        cur->next = NULL;
-        delete cur;
+        Node *temp = head;
+        temp->next->prev = NULL;
+        head = temp->next;
+        temp->next = NULL;
+        delete temp;
     }
     else
     {
@@ -110,15 +117,17 @@ void removeNode(Node *&head, Node *&tail, int pos)
         {
             prev->next = cur->next;
         }
-
+        cur->prev = NULL;
+        prev->next = cur->next;
         cur->next = NULL;
         delete cur;
     }
 }
 
-void print(Node *list)
+void print(Node *head)
 {
-    Node *temp = list;
+    Node *temp = head;
+
     while (temp != NULL)
     {
         cout << temp->data << " ";
@@ -127,10 +136,11 @@ void print(Node *list)
     cout << endl;
 }
 
-int len(Node *list)
+int len(Node *head)
 {
-    Node *temp = list;
     int cnt = 0;
+    Node *temp = head;
+
     while (temp != NULL)
     {
         cnt++;
@@ -141,32 +151,17 @@ int len(Node *list)
 
 int main(int argc, char const *argv[])
 {
-    Node *node1 = new Node(1);
-    Node *list = node1;
-    Node *tail = node1;
-    // insertAtHead(list, 2);
-    // insertAtHead(list, 1);
-    // insertAtTail(tail, 4);
-    insertAtPosition(list, tail, 1, 2);
-    insertAtPosition(list, tail, 2, 3);
-    insertAtPosition(list, tail, 3, 4);
-    insertAtPosition(list, tail, 4, 5);
-    insertAtPosition(list, tail, 5, 6);
-    insertAtHead(list, list, 1);
-    insertAtTail(list, tail, 7);
+    Node *list = new Node(1);
+    Node *head = list;
+    Node *tail = list;
 
-    print(list);
+    insertAtHead(head, tail, 0);
+    insertAtTail(head, tail, 2);
+    insert(head, tail, 2, 9);
+    removeNode(head, tail, 4);
 
-    cout << len(list) << endl;
+    print(head);
 
-    removeNode(list, tail, 7);
-    print(list);
-
-    cout << len(list) << endl;
-
-    removeNode(list, tail, 1);
-
-    print(list);
-
+    cout << tail->data << endl;
     return 0;
 }
