@@ -39,13 +39,13 @@ void insert(Node *&tail, int element, int data)
         {
             temp = temp->next;
         }
-        Node *temp2 = NewNode(data);
+        Node *temp2 = new Node(data);
         temp2->next = temp->next;
         temp->next = temp2;
     }
 }
 
-void delete (Node *tail, int value)
+void del(Node *tail, int value)
 {
     if (tail == NULL)
         return;
@@ -53,13 +53,13 @@ void delete (Node *tail, int value)
     {
         Node *prev = tail;
         Node *cur = prev->next;
-        while (cur->data != data)
+        while (cur->data != value)
         {
             prev = cur;
             cur = cur->next;
         }
         prev->next = cur->next;
-        if (curr == prev)
+        if (cur == prev)
         {
             tail = NULL;
         }
@@ -74,7 +74,7 @@ void delete (Node *tail, int value)
 
 void print(Node *list)
 {
-    if (tail == NULL)
+    if (list == NULL)
         return;
     Node *temp = list;
     do
