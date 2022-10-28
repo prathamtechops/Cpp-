@@ -15,6 +15,7 @@ public:
         this->left = NULL;
     }
 };
+
 Node *insertBST(Node *root, int data)
 {
     if (root == NULL)
