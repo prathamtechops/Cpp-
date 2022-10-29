@@ -15,8 +15,8 @@ int main(int argc, char const *argv[])
 {
 
     string s = "aba";
-    int r = s.length();
-    if (pallindrome(s, 0, r - 1) == true)
+    int r = s.length() - 1;
+    if (pallindrome(s, 0, r) == true)
         printf("Yes");
     else
         printf("No");
