@@ -68,7 +68,7 @@ public:
 int main(int argc, char const *argv[])
 {
 
-    ReportCard student_1("Pratham", 45);
+    ReportCard student_1("Pratham",45);
 
     student_1.get_marks();
     student_1.get_details();

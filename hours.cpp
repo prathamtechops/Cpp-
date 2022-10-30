@@ -14,7 +14,6 @@ public:
         this->mins = mins;
         this->secs = secs;
     }
-
     void calculate()
     {
         int hours_into_sec = hours * (60 * 60);
@@ -31,9 +30,7 @@ public:
 
 int main(int argc, char const *argv[])
 {
-
     Hours *S = new Hours(80, 45, 67);
     S->calculate();
-
     return 0;
 }
