@@ -1,70 +1,104 @@
+/*
+Program done in the lab of Linked List on Nov 4
+*/
+
+
 #include <iostream>
 using namespace std;
 
-class node
-{
+class node{
 public:
     int data;
     node *next;
+
+    node(int data){
+        this->data = data;
+        this->next = NULL;
+    }
 };
-
-int list_length(node *list)
+void insertAtHead(node *&head,node *&tail, int data)
 {
-    node *current = list;
-    int count = 0;
-    while (current != NULL)
+    if(head == NULL)
     {
-        count++;
-        current = current->next;
+        node *temp = new node(data);
+        head = temp;
+        tail = temp;
     }
-    return count;
-}
-
-int print(node *list)
-{
-    node *current = list;
-    while (current != NULL)
+    else
     {
-        cout << current->data << endl;
-        current = current->next;
+        node *temp = new node(data);
+        temp->next = head;
+        head  = temp;
     }
 }
 
-void insert(node **list, int data, int pos)
+void insertAtTail(node *&head,node *&tail, int data)
 {
-    int k = 1;
-    node *p, *q, *newList;
-    newList = new node();
-
-    if (!newList)
+    if(head == NULL)
     {
+        node *temp = new node(data);
+        head = temp;
+        tail = temp;
+    }
+    else
+    {
+        node *temp = new node(data);
+        tail->next = temp;
+        tail = temp;
+    }
+}
+
+void insertAtPos(node *&head,node *&tail, int pos, int data)
+{
+    if(pos == 1){
+        insertAtHead(head, tail, data);
         return;
     }
 
-    newList->data = data;
-    p = *list;
-
-    if (pos == 1)
+    node* temp = head;
+    int count = 1;
+    node *prev = NULL;
+    while(count < pos)
     {
-        newList->next = p;
-        *list = newList;
-    }
+        prev = temp;
+        temp = temp ->next;
+        count++;
 
-    else
-    {
-        while ((p != NULL) && (k < pos))
-        {
-            k++;
-            q = p;
-            p = p->next;
-        }
-        q->next = newList;
-        newList->next = p;
     }
+    if(temp->next == NULL)
+    {
+        insertAtTail(head, tail, data);
+        return;
+    }
+    node *newNode = new node(data);
+    newNode->next = temp;
+    prev->next = newNode;
 }
-
-int main(int argc, char const *argv[])
+void print(node *head){
+    while(head)
+    {
+        cout<< head->data << " ";
+        head = head -> next;
+    }
+    cout << endl;
+}
+int main()
 {
-
+    node *list1 = new node(1);
+    node *head = list1;
+    node *tail = list1;
+    insertAtHead(head, tail, 2);
+    print(head);
+    insertAtHead(head, tail, 3);
+    insertAtHead(head, tail, 4);
+    insertAtHead(head, tail, 6);
+    print(head);
+    insertAtTail(head, tail, 10);
+    print(head);
+    insertAtTail(head, tail, 11);
+    print(head);
+    insertAtPos(head, tail, 1,7);
+    insertAtPos(head, tail, 3,78);
+    print(head);
     return 0;
 }
