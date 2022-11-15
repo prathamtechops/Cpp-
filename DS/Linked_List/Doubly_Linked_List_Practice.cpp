@@ -6,15 +6,17 @@ class node
 public:
     int data;
     node *next;
-
+    node *prev;
     node(int data)
     {
         this->data = data;
         this->next = NULL;
+        this->prev = NULL;
     }
     ~node()
     {
-        int value = this->data;
+        int val;
+        this->data = val;
         if (this->next != NULL)
         {
             this->next = NULL;
@@ -29,11 +31,13 @@ void insertAtHead(node *&head, node *&tail, int data)
         node *temp = new node(data);
         head = temp;
         tail = temp;
+        return;
     }
     else
     {
         node *temp = new node(data);
         temp->next = head;
+        head->prev = temp;
         head = temp;
     }
 }
@@ -45,11 +49,13 @@ void insertAtTail(node *&head, node *&tail, int data)
         node *temp = new node(data);
         head = temp;
         tail = temp;
+        return;
     }
     else
     {
         node *temp = new node(data);
         tail->next = temp;
+        temp->prev = tail;
         tail = temp;
     }
 }
@@ -76,8 +82,10 @@ void insertAtPosition(node *&head, node *&tail, int data, int pos)
         return;
     }
     node *newNode = new node(data);
-    prev->next = newNode;
     newNode->next = temp;
+    temp->prev = newNode;
+    prev->next = newNode;
+    newNode->prev = prev;
 }
 
 void deleteNode(node *&head, node *&tail, int pos)
@@ -85,6 +93,7 @@ void deleteNode(node *&head, node *&tail, int pos)
     if (pos == 1)
     {
         node *temp = head;
+        temp->next->prev = NULL;
         head = head->next;
         temp->next = NULL;
         delete temp;
@@ -111,43 +120,32 @@ void deleteNode(node *&head, node *&tail, int pos)
         {
             prev->next = cur->next;
         }
+        cur->prev = NULL;
+        cur->next->prev = prev;
+        prev->next = cur->next;
         cur->next = NULL;
         delete cur;
     }
 }
 
-void print(node *list)
+void print(node *head)
 {
-    node *temp = list;
-    while (temp != NULL)
+    if (head == NULL)
+        return;
+    node *ptr = head;
+    while (ptr != NULL)
     {
-        cout << temp->data << " ";
-        temp = temp->next;
+        cout << ptr->data << " ";
+        ptr = ptr->next;
     }
     cout << endl;
 }
 
 int main(int argc, char const *argv[])
 {
-
-    node *node1 = new node(1);
-    node *head = node1;
-    node *tail = node1;
-
-    insertAtHead(head, tail, 0);
-    insertAtHead(head, tail, -1);
-    insertAtHead(head, tail, -2);
-    insertAtHead(head, tail, -3);
-    print(head);
-
-    insertAtTail(head, tail, 2);
-    insertAtTail(head, tail, 3);
-    insertAtTail(head, tail, 4);
-    insertAtTail(head, tail, 5);
-    print(head);
-
-    insertAtPosition(head, tail, 10, 2);
-    print(head);
-
+    node *list = new node(1);
+    node *head = list;
+    node *tail = list;
+    insertAtHead(head, tail, 3);
     return 0;
 }
