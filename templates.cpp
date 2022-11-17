@@ -2,7 +2,10 @@
 using namespace std;
 
 template <typename T>
-T add(T x, T y) { return (x + y); }
+T add(T x, T y)
+{
+    return (x + y);
+}
 
 int main(int argc, char const *argv[])
 {
