@@ -26,6 +26,11 @@ void insertAtHead(node *&tail, int data)
 void insertAtTail(node *&tail, int data)
 {
     node *newNode = new node(data);
+    newNode->next = tail-> next;
+    newNode->prev = tail;
+    tail->next = newNode;
+    newNode->next->prev = newNode;
+    tail = newNode;
     
 }
 
@@ -50,6 +55,7 @@ int main() {
     tail->prev = tail;
     insertAtHead(tail, 3);
     insertAtHead(tail, 5);
+    insertAtTail(tail, 10);
     
     print(tail);
     
