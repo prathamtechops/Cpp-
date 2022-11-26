@@ -1,0 +1,10 @@
+Queue q;
+    q.push(1);
+    cout << q.top() << endl;
+    q.push(2);
+    cout << q.top() << endl;
+    q.push(3);
+    cout << q.top() << endl;
+    cout << q.pop() << endl;
+    cout << q.pop() << endl;
+    cout << q.pop() << endl;
