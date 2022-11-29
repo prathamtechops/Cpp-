@@ -30,12 +30,12 @@ void Employee::getData()
 
 int main(int argc, char const *argv[])
 {
-    Employee Nidhi;
+    Employee h;
 
-    Nidhi.setData(1, 2, 3);
-    Nidhi.d = 4;
-    Nidhi.e = 5;
-    Nidhi.getData();
+    h.setData(1, 2, 3);
+    h.d = 4;
+    h.e = 5;
+    h.getData();
 
     return 0;
 }
