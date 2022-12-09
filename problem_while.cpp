@@ -59,13 +59,17 @@ int main() {
     cout<<"Enter size of the Stack: ";
     cin>> stackSize;
     
-    cout<<"1. To Push element in the Stack" << endl;
+    
+    bool flag;
+    while(flag){
+        int ch;
+        cout<<"**************************************"<<endl;
+         cout<<"1. To Push element in the Stack" << endl;
     cout<<"2. To Pop element in the Stack" << endl;
     cout<<"3. To see the top element in the Stack" << endl;
     cout<<"4. To exit the Stack" << endl;
-     int ch;
-    do{
         cin >> ch;
+       
         switch(ch){
             case 1:{
                 int data;
@@ -84,10 +88,12 @@ int main() {
             }
             case 4:{
                 cout<<"You have exited the program!!";
-                break;
+                flag = false;
             }
         }
-    }while(ch!=4);
+    
+    }
+        
 
     return 0;
 }
