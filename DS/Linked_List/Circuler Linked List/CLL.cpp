@@ -76,5 +76,6 @@ int main()
     insertAthead(tail, 1);
     insertAthead(tail, 4);
     insertAtTail(tail, 6);
+    deleteAthead(tail);
     print(tail);
 }

@@ -1,19 +1,19 @@
 #include <iostream>
 using namespace std;
 
-class Node
+class node
 {
 public:
     int data;
-    Node *next;
+    node *next;
 
-    Node(int data)
+    node(int data)
     {
         this->data = data;
         this->next = NULL;
     }
 
-    ~Node()
+    ~node()
     {
         int val = this->data;
         if (this->next != NULL)
@@ -24,35 +24,35 @@ public:
     }
 };
 
-void insert(Node *&tail, int element, int data)
+void insert(node *&tail, int element, int data)
 {
     if (tail == NULL)
     {
-        Node *newtail = new Node(data);
+        node *newtail = new node(data);
         tail = newtail;
         newtail->next = newtail;
     }
     else
     {
-        Node *temp = tail;
+        node *temp = tail;
         while (temp->data != element)
         {
             temp = temp->next;
         }
-        Node *temp2 = new Node(data);
+        node *temp2 = new node(data);
         temp2->next = temp->next;
         temp->next = temp2;
     }
 }
 
-void del(Node *tail, int value)
+void del(node *tail, int value)
 {
     if (tail == NULL)
         return;
     else
     {
-        Node *prev = tail;
-        Node *cur = prev->next;
+        node *prev = tail;
+        node *cur = prev->next;
         while (cur->data != value)
         {
             prev = cur;
@@ -72,21 +72,27 @@ void del(Node *tail, int value)
     }
 }
 
-void print(Node *list)
+void print(node *list)
 {
     if (list == NULL)
         return;
-    Node *temp = list;
+    node *temp = list;
     do
     {
-        cout << list->data << " ";
         list = list->next;
+        cout << list->data << " ";
     } while (list != temp);
     cout << endl;
 }
 
 int main(int argc, char const *argv[])
 {
+
+    node *tail = NULL;
+    insert(tail, 1, 1);
+    insert(tail, 1, 2);
+    del(tail, 1);
+    print(tail);
 
     return 0;
 }

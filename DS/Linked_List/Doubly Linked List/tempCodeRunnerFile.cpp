@@ -148,7 +148,6 @@ int main(int argc, char const *argv[])
     node *tail = list;
     insertAtHead(head, tail, 3);
     insertAtTail(head, tail, 4);
-    deleteNode(head, tail, 2);
     print(head);
     return 0;
 }

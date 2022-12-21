@@ -6,15 +6,15 @@ class ReportCard
 private:
     int marks[5];
     string name;
-    int roll_no;
 
 public:
+    int roll_no;
     void get_data(string name, int roll_no)
     {
         this->name = name;
         this->roll_no = roll_no;
     }
-    
+
     void get_roll()
     {
         cout << "Enter the roll no: ";
@@ -77,27 +77,27 @@ int main(int argc, char const *argv[])
 {
 
     ReportCard s[5];
-    
-    for(int i = 0; i < 5; i++)
+
+    for (int i = 0; i < 5; i++)
     {
         s[i].get_roll();
     }
-    
+
     int key = 3;
-    
+
     int k = 0;
-    
-    while(k<5){
-        if(s[k].roll_no == key)
-          break;
-        k++; 
+
+    while (k < 5)
+    {
+        if (s[k].roll_no == key)
+            break;
+        k++;
     }
 
-    
-    if(k == 5)
-        cout <<"Not present";
+    if (k == 5)
+        cout << "Not present";
     else
-        cout<< "Present at " << k +1;
+        cout << "Present at " << k + 1;
 
     return 0;
 }

@@ -127,10 +127,9 @@ int main(int argc, char const *argv[])
 
     node *root = NULL;
 
-    root = build_tree(root);
-
     // 1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1
 
+    level_order_build(root);
     level_order_tree(root);
 
     return 0;

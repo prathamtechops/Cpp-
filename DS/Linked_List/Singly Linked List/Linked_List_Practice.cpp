@@ -136,17 +136,7 @@ int main(int argc, char const *argv[])
 
     insertAtHead(head, tail, 0);
     insertAtHead(head, tail, -1);
-    insertAtHead(head, tail, -2);
-    insertAtHead(head, tail, -3);
-    print(head);
-
-    insertAtTail(head, tail, 2);
-    insertAtTail(head, tail, 3);
-    insertAtTail(head, tail, 4);
-    insertAtTail(head, tail, 5);
-    print(head);
-
-    insertAtPosition(head, tail, 10, 2);
+    deleteNode(head, tail, 1);
     print(head);
 
     return 0;
