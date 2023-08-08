@@ -1,43 +1,25 @@
-
 #include <iostream>
-#include <string>
+#include <fstream>
 using namespace std;
 
-class Animal
+int main(int argc, char const *argv[])
 {
-public:
-    void animalSound()
+    fstream myFile;
+    // myFile.open("test.text", ios::out);
+    // if (myFile.is_open())
+    // {
+    //     myFile << "Fello\n";
+    //     myFile.close();
+    // }
+    myFile.open("test.text", ios::in);
+    if (myFile.is_open())
     {
-        cout << "The animal makes a sound \n";
+        string line;
+        while (getline(myFile, line))
+        {
+            cout << line << endl;
+        }
+        myFile.close();
     }
-};
-
-class Pig : public Animal
-{
-public:
-    void animalSound()
-    {
-        cout << "The pig says: wee wee \n";
-    }
-};
-
-class Dog : public Animal
-{
-public:
-    void animalSound()
-    {
-        cout << "The dog says: bow wow \n";
-    }
-};
-
-int main()
-{
-    Animal myAnimal;
-    Pig myPig;
-    Dog myDog;
-
-    myAnimal.animalSound();
-    myPig.animalSound();
-    myDog.animalSound();
     return 0;
 }
